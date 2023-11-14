@@ -1,24 +1,24 @@
-import { Sheet, Drawer, Stack, Modal, Box, Button, Link, Grid, Tabs, Tab, TabList, Typography } from "@mui/joy"
-import { Link as RouterLink, useLocation } from "react-router-dom"
+import { Sheet, Drawer, Stack, Button, Link, Tabs, Tab, TabList, Typography } from "@mui/joy"
+import { Link as RouterLink } from "react-router-dom"
 import LittleLemon1 from "assets/Logo.svg"
 import styled from "@emotion/styled"
 import { useState } from "react"
 import MenuIcon from '@mui/icons-material/Menu';
-import LoginBox from "components/LoginBox"
+import { Grid } from "@mui/material"
 
 const HeaderSheet = {
     variant : "soft",
     component : "header",
-    sx : {
-        overflow : "hidden"
-    },
+    sx: {
+        
+    }
 }
 
 const NavGrid = {
     direction : "row",
-    spacing : 1,
+    spacing : 0.5,
     sx : {
-        justifyContent: "center"
+        justifyContent: "center",        
     }
 }
 
@@ -27,7 +27,6 @@ const NavGrid = {
         md : 3,
 
         sx : {
-            p: 2,
             boxShadow : "md",
         }
     }
@@ -38,6 +37,7 @@ const NavGrid = {
                 maxHeight : {  xs : "60px", sm : "80px", md : "100px", lg : "120px", xl: "100vh" } ,
                 width: { xs : "100%", sm : "100%" },
                 borderRadius : "md",
+                p : 0.5
             }),
         )
 
@@ -45,21 +45,19 @@ const NavGrid = {
         sm : 10,   
         md : 8,
         sx : {
-            display : { xs : "none", sm : "block", md : "block", lg : "block", xl : "block"},
+            display : { xs : "none", sm : "grid" },
         }
     }
 
-    const NavigationTabs = {
-        variant : "soft",
-        sx : {
-            height : "100%",
-            
-            "&>*" : { // Lista przycisków
+        const NavigationTabs = {
+            variant : "soft",
+            sx : {
                 height : "100%",
-
+                "&>*" : { // Lista przycisków
+                    height : "100%",
+                }
             }
         }
-    }
 
     const OrderButtonGrid = {
         xs : 10,
@@ -67,7 +65,7 @@ const NavGrid = {
         md : 1,
 
         sx : {
-        
+            px : 0.5
         }
     }
 
@@ -81,7 +79,9 @@ const NavGrid = {
     const MenuIconGrid = {
         xs : 2,
         sx : {
-            display : { sm : "none"}
+            display : { sm : "none"},
+            justifyContent : "center",
+
         }
     }
 
@@ -95,7 +95,6 @@ const NavGrid = {
 export default function HeaderSection( props ){
     const [ ordersDrawer, setOrdersDrawer ] = useState(false)
     const [ navigationDrawer, setNavigationDrawer ] = useState(false)
-    const [ loginModal, setLoginModal ] = useState(true)
 
     return(
         <>  
@@ -118,13 +117,12 @@ export default function HeaderSection( props ){
             </Drawer>
 
             <Sheet {...HeaderSheet}>
-                <Grid container { ...NavGrid }>
-
-                    <Grid item { ...LogoGrid }>
+                <Grid container {...NavGrid}>
+                    <Grid item {...LogoGrid}>
                         <Logo src={LittleLemon1}/>
                     </Grid>
-
-                    <Grid item { ...NavigationGridItem }>
+                    
+                    <Grid item {...NavigationGridItem}>
                         <Tabs {...NavigationTabs} >
                             <TabList tabFlex="auto" defaultValue={0}>                        
                                 <Tab value={0} component={RouterLink} to="/">Home</Tab>
@@ -135,14 +133,17 @@ export default function HeaderSection( props ){
                             </TabList>
                         </Tabs>
                     </Grid>
-                    <Grid {...OrderButtonGrid} item>
+
+                    <Grid item {...OrderButtonGrid}>
                         <Button {...OderButton } onClick={()=>setOrdersDrawer(true)}>Order Online</Button>
                     </Grid>
-                    <Grid item { ...MenuIconGrid } >
+
+                    <Grid item {...MenuIconGrid}>
                         <Button {...MenuButton} onClick={()=>setNavigationDrawer(true)}><MenuIcon /></Button>
                     </Grid>
-                </Grid>                            
-            </Sheet>            
+                    
+                </Grid>
+            </Sheet>         
         </>
     )
 }

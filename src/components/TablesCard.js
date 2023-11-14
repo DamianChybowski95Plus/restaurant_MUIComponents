@@ -26,13 +26,13 @@ export default function TablesCard({ tableName, img, seats, count, description, 
                     </Link>
                 </Typography>}
 
-                { description && <Typography><Chip
+                { description && <Chip
                     variant="outlined"
                     color="primary"
                     size="sm"
                     sx={{ pointerEvents: 'none'}}>
                     {description}
-                </Chip></Typography>}
+                </Chip>}
 
             </CardContent>
       </Card>

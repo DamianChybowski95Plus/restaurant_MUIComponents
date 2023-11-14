@@ -94,7 +94,7 @@ export default function Carousel({ children, cardsPerPanel = 1, padding = "1", s
     // Margines panelu gdy karty go idealnie nie wypełniają, zależny od ilości kart
 
     useEffect(()=>{
-        console.log(  "cardPerPanelMUI", cardPerPanelMUI )
+        // console.log(  "cardPerPanelMUI", cardPerPanelMUI )
     })
 
     return(        

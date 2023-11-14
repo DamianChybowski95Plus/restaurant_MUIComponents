@@ -44,14 +44,12 @@ export default function MainLayout(){
 
     return () => { 
         window.addEventListener( "resize", ()=>setScreenWidth(window.innerWidth))
-
     }
     },[screenWidth, setScreenWidth])
 
     return(
-        <>
+        <>                
             <Typography>{ screenWidth }</Typography>
-
             <Sheet {...Wrapper}>
                 <HeaderSection mainNavState={{ selectedMainNav, setSelectedMainNav }}/>
 

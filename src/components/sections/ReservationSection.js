@@ -1,4 +1,5 @@
-import { Stack, Sheet, Grid, Typography, Accordion, Box, AccordionDetails, AccordionSummary, AccordionGroup, Button, Input } from "@mui/joy";
+import { Stack, Sheet, Typography, Accordion, AccordionDetails, AccordionSummary, AccordionGroup, Button, Input } from "@mui/joy";
+import { Grid } from "@mui/material"
 import { accordionSummaryClasses, } from '@mui/joy/AccordionSummary';
 import { accordionDetailsClasses, } from '@mui/joy/AccordionDetails';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -63,7 +64,7 @@ export default function ReservationSection(){
     const [ calendar, setCalendar ] = useState(null)
     const [ fromClock, setFromClock ] = useState(dayjs())
     const [ chosenTable, setChosenTable ] = useState(null)
-    const [ email, setEmail ] = useState(null)
+    const [ email, setEmail ] = useState("")
 
     const [ emailValidation, setEmailValidation ] = useState(null)
 
@@ -150,12 +151,15 @@ export default function ReservationSection(){
                     </Accordion>
 
                     <Accordion expanded={accordion3} onChange={()=>setAccordion3(!accordion3)}>
-                        <AccordionSummary><Typography sx={{ p:2, borderBottom: 1 }}level="title-lg">3. Your Invitation</Typography></AccordionSummary>
+                        <AccordionSummary sx={{ backgroundColor : calendar && fromClock && chosenTable && emailValidation ? "lightgreen" : "inherit" }}><Typography sx={{ p:2, borderBottom: 1 }}level="title-lg">3. Your Invitation</Typography></AccordionSummary>
                         <AccordionDetails variant="soft">                        
                             <Stack direction = "column" spacing={1} >
-                                <Typography level="title-lg">Your invitation has been sent </Typography>                        
-                                <Typography lyvel="body-lg" color="primary">Please do not foget to click a validation link provided to you email</Typography>
-                                <Typography level="body-lg">We're awaiting you on: - { calendar && " " + dayjs(calendar["$d"]).format("DD/MM/YYYY")} { " " + fromClock && dayjs(fromClock["$d"]).format("hh:mm")} { chosenTable && chosenTable } </Typography>
+                                { ( calendar && fromClock && chosenTable && emailValidation ) ?
+                                    <>
+                                        <Typography level="title-lg">Your invitation has been sent </Typography>
+                                        <Typography lyvel="body-lg" color="primary">Please do not foget to click a validation link provided to you email</Typography>
+                                        <Typography level="body-lg">We're awaiting you on: { calendar && " " + dayjs(calendar["$d"]).format("DD/MM/YYYY")} { " " + fromClock && dayjs(fromClock["$d"]).format("hh:mm")} { chosenTable && chosenTable } </Typography>    
+                                    </> : "Fill form to send an invitation"}                                
                             </Stack>                    
                         </AccordionDetails>
                     </Accordion>

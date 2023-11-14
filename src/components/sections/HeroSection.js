@@ -1,4 +1,5 @@
-import { AspectRatio, Sheet, Stack, Typography, Box, Link, Card, CardCover, IconButton, Grid } from "@mui/joy";
+import { AspectRatio, Sheet, Stack, Typography, Box, Link, Card, CardCover, IconButton } from "@mui/joy";
+import { Grid } from "@mui/material"
 import { loremIpsum } from "lorem-ipsum";
 import restaurant from "assets/location/restaurant.jpg"
 import { CreateNewFolder, Favorite } from "@mui/icons-material";
@@ -25,9 +26,9 @@ export default function HeroSection(){
     return(
         <Sheet {...HeroSectionSheet}>
 
-            <Grid direction="row" container>
+            <Grid container direction="row">
             
-                <Grid md={6} sx={{ display : { xs: "none", sm: "none", md : "flex"}, alignItems : "center"}}>                    
+                <Grid item md={6} sx={{ display : { xs: "none", sm: "none", md : "flex"}, alignItems : "center"}}>                    
                     <Stack {...descriptionStack}>
                         <Typography level="h2">Little Lemon</Typography>
                         <Typography level="title-lg">Chicago</Typography>
@@ -91,7 +92,7 @@ export default function HeroSection(){
                     </Card>
 
                 </Grid>
-                <Grid xs={12} sm={12} sx={{ display : { md : "none"}}}>                    
+                <Grid item xs={12} sm={12} sx={{ display : { md : "none"}}}>                    
                     <Stack {...descriptionStack}>
                         <Typography level="h2">Little Lemon</Typography>
                         <Typography level="title-lg">Chicago</Typography>
