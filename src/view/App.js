@@ -1,12 +1,11 @@
 import { Button, Drawer, Sheet, Stack, Divider, Typography } from "@mui/joy"
+import { useOutlet } from "react-router-dom";
 
 import ThemeSwitch from "components/ThemeSwitch"
-import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HeaderSection from "components/sections/HeaderSection";
-import Home from "./MainLayout/Home";
 import FooterSection from "components/sections/FooterSection";
-
+import Home from "./App/Home";
 
 const Wrapper = {
     variant : "soft",
@@ -28,15 +27,11 @@ const Main = {
     }
 }
 
-export default function MainLayout(){
-
+export default function App(){
     const AdminSession = false
     
     const [ adminDrawer, setAdminDrawer ] = useState(false)
     const [ selectedMainNav, setSelectedMainNav ] = useState("home")
-
-    const location = useLocation()
-
 
     const [ screenWidth, setScreenWidth ] = useState(window.innerWidth)
     useEffect(()=>{
@@ -47,8 +42,10 @@ export default function MainLayout(){
     }
     },[screenWidth, setScreenWidth])
 
-    return(
-        <>                
+    const outlet = useOutlet()
+
+    return(    
+        <>
             <Typography>{ screenWidth }</Typography>
             <Sheet {...Wrapper}>
                 <HeaderSection mainNavState={{ selectedMainNav, setSelectedMainNav }}/>
@@ -57,8 +54,7 @@ export default function MainLayout(){
 
                 <Sheet variant="soft">
                     <Stack {...Main} >
-                        {location.pathname === "/" && <Home/>}
-                        <Outlet/>
+                        {outlet || <Home/>}
                     </Stack>
                 </Sheet>
 
@@ -71,7 +67,6 @@ export default function MainLayout(){
                     <ThemeSwitch/>
                     <Button onClick={()=>setAdminDrawer(true)}>Admin Drawer</Button>
                 </>}
-
             </Sheet>
         </>
     )

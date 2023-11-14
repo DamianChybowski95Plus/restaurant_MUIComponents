@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react"
-import { Sheet, Box, Stack, AspectRatio, Typography, Link } from "@mui/joy"
+import { Sheet, Box, Stack, AspectRatio, Typography, Link, Divider } from "@mui/joy"
 import { useMediaQuery } from "@mui/material"
 import { findByLabelText } from "@testing-library/react"
 import FooterImg from "assets/restauranfood.jpg"
@@ -66,8 +66,13 @@ export default function FooterSection(){
                 <Sheet {...FooterItem}>
                     <Box {...TextBox} >
                         <Stack {...FooterStack}>
-                            <Typography level="title-md">Navigation</Typography>
-                            { NavigationLinks.map((item)=><Link component={RouterLink} to={item.path} key={item.name+"footer"}>{item.name}</Link>)}
+                            <Typography sx={{textAlign: "center"}} level="title-md">Navigation</Typography>
+                            <Divider/>
+                            <Link sx={{p:1}} variant="plain" component={RouterLink} to="/home">Home</Link>
+                            <Link sx={{p:1}} variant="plain" component={RouterLink} to="/about" >About</Link>
+                            <Link sx={{p:1}} variant="plain" component={RouterLink} to="/menu">Menu</Link>
+                            <Link sx={{p:1}} variant="plain" component={RouterLink} to="/reservations">Reservations</Link>
+                            <Link sx={{p:1}} variant="plain" component={RouterLink} to="/login">Login</Link>                            
                         </Stack>
                     </Box>    
                 </Sheet>
@@ -75,8 +80,9 @@ export default function FooterSection(){
                 <Sheet {...FooterItem}>
                     <Box {...TextBox}>
                         <Stack {...FooterStack}>                        
-                            <Typography level="title-md">Contacts:</Typography>
-                            { Object.keys(Contacts).map((item)=><Typography level="body-md" key={item}>{item} : {Contacts[item]}</Typography>)}
+                            <Typography sx={{textAlign:"center"}} level="title-md">Contacts:</Typography>
+                            <Divider/>
+                            { Object.keys(Contacts).map((item)=><Typography level="body-md" sx={{p:1}} key={item}>{item} : {Contacts[item]}</Typography>)}
                         </Stack>   
                     </Box>                                        
                 </Sheet>
@@ -84,8 +90,9 @@ export default function FooterSection(){
                 <Sheet {...FooterItem}>
                     <Box {...TextBox}>
                     <Stack {...FooterStack}>
-                        <Typography level="title-md">Social Media</Typography>
-                        { SocialMedia.map((item)=><Typography level="body-md" key={item.platform}>{item.platform} : {item.link}</Typography>)}
+                        <Typography sx={{textAlign:"center"}} level="title-md">Social Media</Typography>
+                        <Divider/>
+                        { SocialMedia.map((item)=><Typography level="body-md" sx={{p:1}} key={item.platform}>{item.platform} : {item.link}</Typography>)}
                     </Stack>    
                     </Box>                    
                 </Sheet>

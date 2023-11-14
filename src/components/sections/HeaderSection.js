@@ -1,7 +1,6 @@
-import { Sheet, Drawer, Stack, Button, Link, Tabs, Tab, TabList, Typography } from "@mui/joy"
+import { Sheet, Box, Drawer, Stack, Button, Link, Tabs, Tab, TabList, Typography } from "@mui/joy"
 import { Link as RouterLink } from "react-router-dom"
 import LittleLemon1 from "assets/Logo.svg"
-import styled from "@emotion/styled"
 import { useState } from "react"
 import MenuIcon from '@mui/icons-material/Menu';
 import { Grid } from "@mui/material"
@@ -16,7 +15,7 @@ const HeaderSheet = {
 
 const NavGrid = {
     direction : "row",
-    spacing : 0.5,
+    spacing : 1,
     sx : {
         justifyContent: "center",        
     }
@@ -32,14 +31,12 @@ const NavGrid = {
     }
 
         // Ustawienie sx na zwykłym zdjęciu; bez aspekt ratio.
-        const Logo = styled('img')(({theme}) => 
-            theme.unstable_sx({
-                maxHeight : {  xs : "60px", sm : "80px", md : "100px", lg : "120px", xl: "100vh" } ,
-                width: { xs : "100%", sm : "100%" },
-                borderRadius : "md",
-                p : 0.5
-            }),
-        )
+        const Logo = {
+            maxHeight : {  xs : "60px", sm : "80px", md : "100px", lg : "120px", xl: "100vh" },
+            width : { xs : "100%", sm : "100%" },
+            borderRadius : "md",
+            p : 0.5
+        }
 
     const NavigationGridItem = {
         sm : 10,   
@@ -108,7 +105,7 @@ export default function HeaderSection( props ){
             {/* NavigationDrawer - hidden by default */}
             <Drawer open={navigationDrawer} anchor="right" onClose={()=>setNavigationDrawer(false)}>                
                 <Stack gap={0.2} direction="column">
-                    <Link sx={{p:2}} variant="solid" component={RouterLink} onClick={()=>setNavigationDrawer(false)} to="/">Home</Link>
+                    <Link sx={{p:2}} variant="solid" component={RouterLink} onClick={()=>setNavigationDrawer(false)} to="/home">Home</Link>
                     <Link sx={{p:2}} variant="solid" component={RouterLink} onClick={()=>setNavigationDrawer(false)} to="/about" >About</Link>
                     <Link sx={{p:2}} variant="solid" component={RouterLink} onClick={()=>setNavigationDrawer(false)} to="/menu">Menu</Link>
                     <Link sx={{p:2}} variant="solid" component={RouterLink} onClick={()=>setNavigationDrawer(false)} to="/reservations">Reservations</Link>
@@ -119,13 +116,13 @@ export default function HeaderSection( props ){
             <Sheet {...HeaderSheet}>
                 <Grid container {...NavGrid}>
                     <Grid item {...LogoGrid}>
-                        <Logo src={LittleLemon1}/>
+                        <Box {...Logo} component="img" src={LittleLemon1}/>
                     </Grid>
                     
                     <Grid item {...NavigationGridItem}>
                         <Tabs {...NavigationTabs} >
                             <TabList tabFlex="auto" defaultValue={0}>                        
-                                <Tab value={0} component={RouterLink} to="/">Home</Tab>
+                                <Tab value={0} component={RouterLink} to="/home">Home</Tab>
                                 <Tab value={1} component={RouterLink} to="/menu">Menu</Tab>
                                 <Tab value={2} component={RouterLink} to="/about">About</Tab>
                                 <Tab value={3} component={RouterLink} to="/reservations">Reservations</Tab>

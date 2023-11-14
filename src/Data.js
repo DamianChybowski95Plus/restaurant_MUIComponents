@@ -7,29 +7,6 @@ export const MainDescription = {
     description : loremIpsum()
 }
 
-export const NavigationLinks = [ 
-    {
-        path : "/",
-        name : "Home",
-        element : "MainLayout"
-    },
-    {
-        path : "/about",
-        name : "About",
-        element : "About"
-    },
-    {
-        path : "/menu",
-        name : "Menu",
-        element : "Menu"
-    },
-    {
-        path : "/reservations",
-        name : "Reservations",
-        element : "Reservations"
-    }
-]
-
 export const Contacts = {
     Adres : "12 er Chicago",
     "Phone Number" : 111111111,

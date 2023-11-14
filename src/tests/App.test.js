@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import MainLayout from 'view/MainLayout';
+import FooterSection from 'components/sections/FooterSection';
 
-test('renders learn react link', () => {
-  render(<MainLayout />);
-  const navigation = screen.getByText(/login/i);
-  expect(navigation).toBeInTheDocument();
+test('About rendered', () => {
+  render(<FooterSection />);
+  const email = screen.getByText(/Little/i);
+  expect(email).toBeInTheDocument();
 });
